@@ -10,4 +10,20 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'settings',
+    loadComponent: () => import('./settings/settings.page').then( m => m.SettingsPage)
+  },
+  {
+    path: 'all-countries',
+    loadComponent: () => import('./all-countries/all-countries.page').then( m => m.AllCountriesPage)
+  },
+  {
+    path: 'news',
+    loadComponent: () => import('./news/news.page').then( m => m.NewsPage)
+  },
+  {
+    path: 'weather',
+    loadComponent: () => import('./weather/weather.page').then( m => m.WeatherPage)
+  },
 ];
