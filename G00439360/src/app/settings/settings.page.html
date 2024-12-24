@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-radio-group value="units">
+  <ion-radio-group value="{{selectedUnits}}" (ionChange)="saveUnitsToStore($event.target.value)" >
     <ion-radio labelPlacement="end" value="metric">Metric</ion-radio><br>
     <ion-radio labelPlacement="end" value="standard">Standard</ion-radio><br>
     <ion-radio labelPlacement="end" value="imperial">Imperial</ion-radio>

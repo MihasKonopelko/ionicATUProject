@@ -45,6 +45,4 @@ export class HomePage {
   async setCountryToSearch() {
     await this.dms.set("countryToSearch", this.countryToSearch);
   }
- 
-
 }
