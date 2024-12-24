@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title [routerLink]="link">
+    <ion-title [routerLink]="settingsLink">
       G00439360 
       <ion-icon name="settings-outline" className="center-right"></ion-icon>
     </ion-title>
@@ -9,7 +9,8 @@
 
 <ion-content [fullscreen]="true">
     <ion-item>
-      <ion-input label="Enter Country:" placeholder="Country Name"></ion-input>
+      <ion-input [(ngModel)] = "countryToSearch" label="Enter Country:" 
+      placeholder="Country Name" (change)="setCountryToSearch()"></ion-input>
     </ion-item>
-    <ion-button expand="block">Search</ion-button>
+    <ion-button [routerLink]="countriesLink" expand="block">Search</ion-button>
 </ion-content>

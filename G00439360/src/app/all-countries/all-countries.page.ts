@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
+import { DataManagerService } from '../services/data-manager.service';
+
 @Component({
   selector: 'app-all-countries',
   templateUrl: './all-countries.page.html',
@@ -11,10 +13,21 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class AllCountriesPage implements OnInit {
+  countryToSearch!:string;
 
-  constructor() { }
+  constructor(private dms: DataManagerService) { }
 
   ngOnInit() {
+    this.getCountryToSearchFromStorage();
   }
+
+  ionViewWillEnter() {
+    
+  }
+
+  async getCountryToSearchFromStorage() {
+    this.countryToSearch = await this.dms.get("countryToSearch");
+  }
+
 
 }
