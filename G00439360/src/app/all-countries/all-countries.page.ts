@@ -42,11 +42,11 @@ export class AllCountriesPage implements OnInit {
     this.weatherLink = "/weather";
 
     this.countryToSearch = "";
-    this.getCountries();
+    
   }
 
   ionViewWillEnter() {
-    
+    this.getCountries();
   }
 
 
@@ -64,17 +64,11 @@ export class AllCountriesPage implements OnInit {
     // Wait to get countries from internet.
     let result:any = await this.hms.get({url:url});
 
-
     this.countryData = result.data;
+  }
 
-
-    //for (let entry of result.data){
-    //  console.log(entry.name.official);
-    //}
-
-
-
-
-
+  async onPressingButton(countryOfficialName:string, cca2:string){
+    await this.dms.set("countryToSearch", countryOfficialName);
+    await this.dms.set("cca2ToSearch", cca2);
   }
 }

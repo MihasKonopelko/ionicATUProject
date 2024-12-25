@@ -14,8 +14,10 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-button [routerLink]='newsLink' expand="block" fill="outline">News</ion-button>
-    <ion-button [routerLink]='weatherLink' expand="block" fill="outline">Weather</ion-button>
+    <ion-button (click)="onPressingButton(country.name.official, country.cca2)" 
+      expand="block" fill="outline" [routerLink]='newsLink'>News</ion-button>
+    <ion-button (click)="onPressingButton(country.name.official, country.cca2)" 
+      expand="block" fill="outline" [routerLink]='weatherLink'>Weather</ion-button>
   </ion-card-content>
 
 </ion-card>
