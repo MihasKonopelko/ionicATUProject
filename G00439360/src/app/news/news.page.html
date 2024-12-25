@@ -1,13 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>news</ion-title>
+    <ion-title>News from {{country}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">news</ion-title>
+      <ion-title size="large" *ngIf="newsData.length > 0"  >News for {{country}}</ion-title>
+      <ion-title size="large" *ngIf="newsData.length < 1"  >No News for {{country}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card *ngFor="let article of newsData">
+   
+    <img src="{{article.image_url}}" style="max-width:400px;width:100%"/>
+    <ion-card-header>
+      <ion-card-title>{{article.title}}</ion-card-title>
+      <ion-card-subtitle>{{article.description}}</ion-card-subtitle>
+    </ion-card-header>
+
+  
+  </ion-card>
+
+
+
 </ion-content>
