@@ -67,8 +67,9 @@ export class AllCountriesPage implements OnInit {
     this.countryData = result.data;
   }
 
-  async onPressingButton(countryOfficialName:string, cca2:string){
+  async onPressingButton(countryOfficialName:string, cca2:string, latlng:any){
     await this.dms.set("countryToSearch", countryOfficialName);
     await this.dms.set("cca2ToSearch", cca2);
+    await this.dms.set("latlngToSearch", JSON.stringify(latlng));
   }
 }

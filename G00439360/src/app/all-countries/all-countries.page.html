@@ -14,9 +14,9 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-button (click)="onPressingButton(country.name.official, country.cca2)" 
+    <ion-button (click)="onPressingButton(country.name.official, country.cca2, country.latlng)" 
       expand="block" fill="outline" [routerLink]='newsLink'>News</ion-button>
-    <ion-button (click)="onPressingButton(country.name.official, country.cca2)" 
+    <ion-button (click)="onPressingButton(country.name.official, country.cca2, country.latlng)" 
       expand="block" fill="outline" [routerLink]='weatherLink'>Weather</ion-button>
   </ion-card-content>
 
