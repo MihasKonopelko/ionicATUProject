@@ -33,24 +33,23 @@ export class AllCountriesPage implements OnInit {
   newsLink!:string;
   weatherLink!:string;
 
-  constructor(private dms: DataManagerService, private hms: HttpManagerService, private router: Router) { }
+  urlAddress!:string
 
+  constructor(
+    private dms: DataManagerService, 
+    private hms: HttpManagerService, 
+    private router: Router) { 
+  }
 
   ngOnInit() {
     this.newsLink = "/news";
     this.weatherLink = "/weather";
-
+    this.urlAddress = "https://restcountries.com/v3.1/name/";
     this.countryToSearch = "";
-    
   }
 
   ionViewWillEnter() {
     this.getCountries();
-  }
-
-
-  async getCountryToSearchFromStorageAndFromInternet() {
-    
   }
 
   async getCountries(){
@@ -58,21 +57,23 @@ export class AllCountriesPage implements OnInit {
     this.countryToSearch = await this.dms.get("countryToSearch");
 
     // Create URL.
-    let url = "https://restcountries.com/v3.1/name/" + this.countryToSearch;
+    let url = this.urlAddress + this.countryToSearch;
 
     // Wait to get countries from internet.
     let result:any = await this.hms.get({url:url});
 
+    // Save locally the country data.
     this.countryData = result.data;
   }
 
   async onPressingButton(country:any, nextPage:string){
+    // Store in DB
     await this.dms.set("countryToSearch", country.name.official);
     await this.dms.set("cca2ToSearch", country.cca2);
     await this.dms.set("latlngToSearch", JSON.stringify(country.latlng));
     await this.dms.set("capitalOfSearchedCountry", country.capital[0]);
 
+    // Once saved, route to the next page.
     this.router.navigate([nextPage]);
-
   }
 }

@@ -13,6 +13,7 @@ import { DataManagerService } from '../services/data-manager.service';
   standalone: true,
   imports: [IonRadio, IonRadioGroup, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class SettingsPage implements OnInit {
   selectedUnits!:string;
 
@@ -26,14 +27,10 @@ export class SettingsPage implements OnInit {
 
   async getUnitsFromStorage() {
     this.selectedUnits = await this.dms.get("selectedUnits");
-    if (this.selectedUnits == null){
-      this.selectedUnits = "metric";
-    }
   }
 
   async saveUnitsToStore(value:string) {
     this.selectedUnits = value;
     await this.dms.set("selectedUnits", this.selectedUnits);
-    console.log("trigg");
   }
 }

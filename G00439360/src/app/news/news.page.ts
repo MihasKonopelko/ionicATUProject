@@ -13,24 +13,25 @@ import { HttpManagerService } from '../services/http-manager.service';
   standalone: true,
   imports: [IonCardSubtitle, IonCardTitle, IonCardContent, IonButton, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class NewsPage implements OnInit {
   apiKey!:string;
   newsData:any;
   country!:string;
+  urlAddress!:string;
 
   constructor(private dms: DataManagerService, private hms: HttpManagerService) { }
 
   ngOnInit() {
-    this.newsData = [];
     this.apiKey = "pub_632977eb474ea6d015a8d26530431158a7318";
+    this.urlAddress = "https://newsdata.io/api/1/latest?apikey=";
+    this.newsData = [];
   }
-
 
   ionViewWillEnter() {
     this.newsData = [];
     this.getNews();
   }
-
 
   async getNews(){
     // Wait to get name from DB.
@@ -39,7 +40,7 @@ export class NewsPage implements OnInit {
 
 
     // Create URL.
-    let url = "https://newsdata.io/api/1/latest?apikey=" + this.apiKey + 
+    let url = this.urlAddress + this.apiKey + 
     "&country=" + cca2ToSearch;
 
     // Wait to get news for a country from internet.

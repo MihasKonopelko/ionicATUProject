@@ -26,12 +26,11 @@ import { DataManagerService } from '../services/data-manager.service';
     FormsModule,
     RouterLink],
 })
+
 export class HomePage {
   settingsLink!:string;
   countriesLink!:string;
-
   countryToSearch!:string;
-
 
   constructor(private dms: DataManagerService) {
     addIcons({ settingsOutline });
@@ -40,7 +39,20 @@ export class HomePage {
   ngOnInit() {
     this.settingsLink = "/settings";
     this.countriesLink = "/all-countries"
+    this.checkIfUnitsAreSelected();
   }
+
+
+  // Checks if measurement units are present in DB.  If not, set them as "metric".
+  async checkIfUnitsAreSelected(){
+    let selectedUnits = await this.dms.get("selectedUnits");
+    if (selectedUnits == null){
+      await this.dms.set("selectedUnits", "metric");
+    }
+  }
+
+
+
 
   async setCountryToSearch() {
     await this.dms.set("countryToSearch", this.countryToSearch);

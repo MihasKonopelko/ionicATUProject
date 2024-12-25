@@ -5,22 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+  <ion-card *ngFor="let country of countryData">
+    <img src="{{country.flags.png}}"/>
+    <ion-card-header>
+      <ion-card-title>{{country.name.official}}</ion-card-title>
+    </ion-card-header>
 
-<ion-card *ngFor="let country of countryData">
-  <img src="{{country.flags.png}}"/>
-  <ion-card-header>
-    <ion-card-title>{{country.name.official}}</ion-card-title>
-  </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="onPressingButton(country, newsLink)" expand="block" fill="outline">News</ion-button>
+      <ion-button (click)="onPressingButton(country, weatherLink)" expand="block" fill="outline">Weather</ion-button>
+    </ion-card-content>
 
-  <ion-card-content>
-    <ion-button (click)="onPressingButton(country, newsLink)" 
-      expand="block" fill="outline">News</ion-button>
-    <ion-button (click)="onPressingButton(country, weatherLink)" 
-      expand="block" fill="outline">Weather</ion-button>
-  </ion-card-content>
-
-</ion-card>
+  </ion-card>
 
 
 
