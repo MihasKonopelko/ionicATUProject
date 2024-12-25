@@ -1,13 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>weather</ion-title>
+    <ion-title>Weather for {{capitalName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">weather</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <img src="{{urlToWeatherImage}}"/>
+    <ion-card-header>
+      <ion-card-title>{{weatherTitle}}</ion-card-title>
+      <ion-card-subtitle>{{temperature}} ({{selectedUnits}})</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+
 </ion-content>
