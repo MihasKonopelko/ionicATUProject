@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
+import { DataManagerService } from '../services/data-manager.service';
+import { HttpManagerService } from '../services/http-manager.service';
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.page.html',
@@ -15,7 +18,7 @@ export class WeatherPage implements OnInit {
   apiKey!:string
 
 
-  constructor() { }
+  constructor(private dms: DataManagerService, private hms: HttpManagerService) { }
 
   ngOnInit() {
     this.weatherData = [];
@@ -28,27 +31,27 @@ export class WeatherPage implements OnInit {
   }
 
   async getWeather(){
-    /*
-    // Wait to get name from DB.
-    let cca2ToSearch = await this.dms.get("cca2ToSearch");
-    this.country = await this.dms.get("countryToSearch");
+    // Get LatLng data for weather.
+    let latlngToSearch = JSON.parse(await this.dms.get("latlngToSearch"));
+    console.log (latlngToSearch);
+
+    // Get Units Data
+    let selectedUnits = await this.dms.get("selectedUnits");
 
 
     // Create URL.
-    let url = "https://newsdata.io/api/1/latest?apikey=" + this.apiKey + 
-    "&country=" + cca2ToSearch;
-
-    // Wait to get news for a country from internet.
-    let result:any = await this.hms.get({url:url});
-
-    console.log (result.data.status);
-    if (result.data.status == "success"){
-      this.newsData = result.data.results;
-    }
+    let url = 
+    "https://api.openweathermap.org/data/2.5/weather?lat=" + latlngToSearch[0] + 
+    "&lon=" + latlngToSearch[1] + 
+    "&units=" + selectedUnits + 
+    "&appid=" + this.apiKey;
     
-    console.log (result);
-*/
-  console.log ("perkele");
+    let result:any = await this.hms.get({url:url});
+    
+    console.log (result.data);
+
+   
+
     
   }
 
